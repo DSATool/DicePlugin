@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.Tooltip?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane fx:id="pane" xmlns:fx="http://javafx.com/fxml/1" >
+   <bottom>
+      <Button onAction="#okClicked" text="Ok" BorderPane.alignment="BOTTOM_RIGHT" />
+   </bottom>
+   <left>
+      <VBox spacing="2">
+         <HBox spacing="2">
+            <Button maxWidth="Infinity" onAction="#addEntry" prefWidth="1" HBox.hgrow="ALWAYS" text="&#xE145;" >
+               <padding><Insets top="0" right="0" bottom="0" left="0"/></padding>
+               <font>
+                  <Font name="Material Icons" size="20.0" />
+               </font>
+               <tooltip>
+                  <Tooltip text="Neue Formel" >
+                     <font>
+                        <Font name="normal" size="9.5" />
+                     </font>
+                  </Tooltip>
+               </tooltip>
+            </Button>
+            <Label maxWidth="Infinity" prefWidth="1" HBox.hgrow="ALWAYS" />
+            <Button fx:id="remove" disable="true" maxWidth="Infinity" onAction="#removeEntry" prefWidth="1" HBox.hgrow="ALWAYS" text="&#xE15B;" >
+               <padding><Insets top="0" right="0" bottom="0" left="0"/></padding>
+               <font>
+                  <Font name="Material Icons" size="20.0" />
+               </font>
+               <tooltip>
+                  <Tooltip text="Entfernen" >
+                     <font>
+                        <Font name="normal" size="9.5" />
+                     </font>
+                  </Tooltip>
+               </tooltip>
+            </Button>
+     	  </HBox>
+          <ListView fx:id="list" prefWidth="150" />
+       </VBox>
+   </left>
+   <center>
+      <GridPane alignment="CENTER">
+         <children>
+            <Label text="Name:" />
+            <TextField fx:id="name" onKeyReleased="#nameChanged" onMouseReleased="#nameChanged" GridPane.columnIndex="1" />
+            <Label text="Formel:" GridPane.rowIndex="1" />
+            <TextField fx:id="formula" onKeyReleased="#formulaChanged" onMouseReleased="#formulaChanged" GridPane.ColumnIndex="1" GridPane.rowIndex="1" />
+         </children>
+         <columnConstraints>
+            <ColumnConstraints />
+            <ColumnConstraints hgrow="ALWAYS" />
+         </columnConstraints>
+      </GridPane>
+   </center>
+</BorderPane>

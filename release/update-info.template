@@ -1,0 +1,4 @@
+{
+	"releaseDate" : "@releaseDate@",
+	"releaseLink" : "https://raw.githubusercontent.com/DSATool/DicePlugin/master/release/Dice_@releaseDate@.zip"
+}
