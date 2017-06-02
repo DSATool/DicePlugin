@@ -359,7 +359,7 @@ public class DiceController implements JSONListener {
 	}
 
 	public void load() {
-		final JSONObject diceObject = ResourceManager.getResource("settings/Würfel");
+		final JSONObject diceObject = ResourceManager.getResource("settings/Wuerfel");
 		data = diceObject.getArr("Makros");
 		if (data == null) {
 			data = new JSONArray(diceObject);
@@ -373,7 +373,7 @@ public class DiceController implements JSONListener {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see resources.ResourceListener#notifyChanged()
 	 */
 	@Override
@@ -499,7 +499,7 @@ public class DiceController implements JSONListener {
 	private void rollFormula() {
 		final SingleSelectionModel<String> formulaModel = formula.getSelectionModel();
 		if (formulaModel.getSelectedIndex() > -1) {
-			final JSONObject wuerfel = ResourceManager.getResource("settings/Würfel");
+			final JSONObject wuerfel = ResourceManager.getResource("settings/Wuerfel");
 			final JSONArray daten = wuerfel.getArr("Makros").getArr(formulaModel.getSelectedIndex());
 			if (daten.getString(0).equals(formulaModel.getSelectedItem())) {
 				final String formulaString = daten.getString(1);

@@ -57,7 +57,7 @@ public class PredefinitionDialog implements JSONListener {
 	 * @param parentShell
 	 */
 	public PredefinitionDialog() {
-		final JSONObject dice = ResourceManager.getResource("settings/Würfel");
+		final JSONObject dice = ResourceManager.getResource("settings/Wuerfel");
 		data = dice.getArr("Makros");
 		data.addListener(this);
 	}
@@ -104,11 +104,11 @@ public class PredefinitionDialog implements JSONListener {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see resources.ResourceListener#notifyChanged()
 	 */
 	@Override
-	public void notifyChanged(JSONValue changed) {
+	public void notifyChanged(final JSONValue changed) {
 		reload();
 	}
 
@@ -168,7 +168,7 @@ public class PredefinitionDialog implements JSONListener {
 
 		listModel = list.getSelectionModel();
 
-		listModel.selectedIndexProperty().addListener((ObservableValue<? extends Number> observable, Number oldValue, Number newValue) -> {
+		listModel.selectedIndexProperty().addListener((final ObservableValue<? extends Number> observable, final Number oldValue, final Number newValue) -> {
 			if (listModel.getSelectedIndex() > -1) {
 				name.setText(data.getArr(listModel.getSelectedIndex()).getString(0));
 				formula.setText(data.getArr(listModel.getSelectedIndex()).getString(1));
