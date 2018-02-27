@@ -2,3 +2,4 @@
 /source/
 /bin/
 /plugins/*.jar
+*.key

@@ -2,5 +2,9 @@
 	"releaseDate" : "@releaseDate@",
 	"previousReleaseDate" : "@previousReleaseDate@",
 	"previousReleaseLink" : "https://raw.githubusercontent.com/DSATool/DicePlugin/master/release/Dice_@previousReleaseDate@.zip",
-	"updateInfo" : "https://raw.githubusercontent.com/DSATool/DicePlugin/master/release/update-info.json"
+	"updateInfo" : "https://raw.githubusercontent.com/DSATool/DicePlugin/master/release/update-info.json",
+	"signatureProviderName" : "SunEC",
+	"signatureKeyAlgorithm" : "EC",
+	"signatureAlgorithm" : "SHA512withECDSA",
+	"signatureKey" : "MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEioN0JbnhvA+pNE3rz3iI87BNAD9raBCHCcxryp4ZCutlnsEQAAkRCz4381F+mSHYLent9OQ1Su1szlXy5Fr26A=="
 }
