@@ -20,7 +20,7 @@ import java.util.Stack;
 import java.util.StringTokenizer;
 
 import dsatool.resources.ResourceManager;
-import dsatool.util.ReactiveSpinner;
+import dsatool.ui.ReactiveSpinner;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;

@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
-<?import dsatool.util.ReactiveSpinner?>
+<?import dsatool.ui.ReactiveSpinner?>
 
 <BorderPane xmlns:fx="http://javafx.com/fxml/1" styleClass="background" >
    <left>
