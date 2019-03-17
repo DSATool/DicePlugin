@@ -1,4 +1,3 @@
-
 /*
  * Copyright 2017 DSATool team
  *
@@ -14,7 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import dice.DiceController;
+package dice;
+
 import dsatool.gui.Main;
 import dsatool.plugins.Plugin;
 import dsatool.util.ErrorLogger;
@@ -34,7 +34,7 @@ public class Dice extends Plugin {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see plugins.Plugin#getPluginName()
 	 */
 	@Override
@@ -44,7 +44,7 @@ public class Dice extends Plugin {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see plugins.Plugin#initialize()
 	 */
 	@Override
@@ -58,7 +58,7 @@ public class Dice extends Plugin {
 			fxmlLoader.setController(controller);
 
 			try {
-				pane = fxmlLoader.load(getClass().getResource("dice/Dice.fxml").openStream());
+				pane = fxmlLoader.load(getClass().getResource("Dice.fxml").openStream());
 			} catch (final Exception e) {
 				ErrorLogger.logError(e);
 			}
