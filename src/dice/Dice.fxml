@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?language javascript?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
@@ -22,18 +21,18 @@
             <ReactiveSpinner fx:id="count" imin="1" imax="99" initialValue="1" HBox.hgrow="ALWAYS" prefWidth="70" editable="true" />
          </HBox>
          <HBox spacing="2" >
-            <Button onAction="controller.roll(3)" text="W3" maxWidth="Infinity" HBox.hgrow="ALWAYS" prefWidth="70" />
-            <Button onAction="controller.roll(4)" text="W4" maxWidth="Infinity" HBox.hgrow="ALWAYS" prefWidth="70" />
-            <Button onAction="controller.roll(6)" text="W6" maxWidth="Infinity" HBox.hgrow="ALWAYS" prefWidth="70" />
+            <Button onAction="#roll" text="W3" maxWidth="Infinity" HBox.hgrow="ALWAYS" prefWidth="70" />
+            <Button onAction="#roll" text="W4" maxWidth="Infinity" HBox.hgrow="ALWAYS" prefWidth="70" />
+            <Button onAction="#roll" text="W6" maxWidth="Infinity" HBox.hgrow="ALWAYS" prefWidth="70" />
          </HBox>
          <HBox spacing="2" >
-            <Button onAction="controller.roll(8)" text="W8" maxWidth="Infinity" HBox.hgrow="ALWAYS" prefWidth="70" />
-            <Button onAction="controller.roll(10)" text="W10" maxWidth="Infinity" HBox.hgrow="ALWAYS" prefWidth="70" />
-            <Button onAction="controller.roll(12)" text="W12" maxWidth="Infinity" HBox.hgrow="ALWAYS" prefWidth="70" />
+            <Button onAction="#roll" text="W8" maxWidth="Infinity" HBox.hgrow="ALWAYS" prefWidth="70" />
+            <Button onAction="#roll" text="W10" maxWidth="Infinity" HBox.hgrow="ALWAYS" prefWidth="70" />
+            <Button onAction="#roll" text="W12" maxWidth="Infinity" HBox.hgrow="ALWAYS" prefWidth="70" />
          </HBox>
          <HBox fx:id="row3" spacing="2" >
-            <Button onAction="controller.roll(20)" text="W20" maxWidth="Infinity" HBox.hgrow="ALWAYS" prefWidth="70" />
-            <Button onAction="controller.roll(controller.dice.getValue())" text="W?" maxWidth="Infinity" HBox.hgrow="ALWAYS" prefWidth="70" />
+            <Button onAction="#roll" text="W20" maxWidth="Infinity" HBox.hgrow="ALWAYS" prefWidth="70" />
+            <Button onAction="#roll" text="W?" maxWidth="Infinity" HBox.hgrow="ALWAYS" prefWidth="70" />
             <ReactiveSpinner fx:id="dice" imin="1" imax="999" initialValue="100" HBox.hgrow="ALWAYS" prefWidth="70" />
          </HBox>
          <HBox fx:id="row4" spacing="2" >

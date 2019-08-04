@@ -21,9 +21,11 @@ import java.util.StringTokenizer;
 
 import dsatool.resources.ResourceManager;
 import dsatool.ui.ReactiveSpinner;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.SingleSelectionModel;
@@ -132,224 +134,210 @@ public class DiceController implements JSONListener {
 				} while (token.isEmpty());
 			}
 			switch (token) {
-			case "W":
-				try {
-					int sum = 0;
-					int dice = 6;
-					if (t.hasMoreTokens()) {
-						do {
-							token = t.nextToken().trim();
-						} while (token.isEmpty());
-						if ("+".equals(token) || "-".equals(token) || "*".equals(token) || "/".equals(token)) {
-							pushBack = true;
-						} else {
-							dice = Integer.parseUnsignedInt(token);
+				case "W":
+					try {
+						int sum = 0;
+						int dice = 6;
+						if (t.hasMoreTokens()) {
+							do {
+								token = t.nextToken().trim();
+							} while (token.isEmpty());
+							if ("+".equals(token) || "-".equals(token) || "*".equals(token) || "/".equals(token)) {
+								pushBack = true;
+							} else {
+								dice = Integer.parseUnsignedInt(token);
+							}
 						}
-					}
-					if (current > 1) {
-						resultText.append('(');
-					}
-					int cur = r.nextInt(dice) + 1;
-					resultText.append(cur);
-					sum += cur;
-					for (int j = 1; j < current; ++j) {
-						resultText.append(" + ");
-						cur = r.nextInt(dice) + 1;
+						if (current > 1) {
+							resultText.append('(');
+						}
+						int cur = r.nextInt(dice) + 1;
 						resultText.append(cur);
 						sum += cur;
+						for (int j = 1; j < current; ++j) {
+							resultText.append(" + ");
+							cur = r.nextInt(dice) + 1;
+							resultText.append(cur);
+							sum += cur;
+						}
+						if (current > 1) {
+							resultText.append(')');
+						}
+						current = sum;
+					} catch (final NumberFormatException e) {
+						final Alert alert = new Alert(AlertType.ERROR);
+						alert.setTitle("Formel konnte nicht interpretiert werden");
+						alert.setHeaderText("Formel konnte nicht interpretiert werden");
+						alert.setContentText("Seitenzahl muss positive Ganzzahl sein, war aber " + token);
+						alert.showAndWait();
+						return -1;
 					}
-					if (current > 1) {
-						resultText.append(')');
+					printCurrent = false;
+					break;
+				case "(":
+					if (current != 1) {
+						final Alert alert = new Alert(AlertType.ERROR);
+						alert.setTitle("Formel konnte nicht interpretiert werden");
+						alert.setHeaderText("Formel konnte nicht interpretiert werden");
+						alert.setContentText("Vor einer öffnenden Klammer muss ein Rechenzeichen stehen!");
+						alert.showAndWait();
+						return -1;
 					}
-					current = sum;
-				} catch (final NumberFormatException e) {
-					final Alert alert = new Alert(AlertType.ERROR);
-					alert.setTitle("Formel konnte nicht interpretiert werden");
-					alert.setHeaderText("Formel konnte nicht interpretiert werden");
-					alert.setContentText("Seitenzahl muss positive Ganzzahl sein, war aber " + token);
-					alert.showAndWait();
-					return -1;
-				}
-				printCurrent = false;
-				break;
-			case "(":
-				if (current != 1) {
-					final Alert alert = new Alert(AlertType.ERROR);
-					alert.setTitle("Formel konnte nicht interpretiert werden");
-					alert.setHeaderText("Formel konnte nicht interpretiert werden");
-					alert.setContentText("Vor einer öffnenden Klammer muss ein Rechenzeichen stehen!");
-					alert.showAndWait();
-					return -1;
-				}
-				resultText.append('(');
-				current = interpretSimpleFormula(t, resultText);
-				printCurrent = false;
-				break;
-			case ")":
-				switch (operators.pop()) {
-				case '+':
-					result += current;
+					resultText.append('(');
+					current = interpretSimpleFormula(t, resultText);
+					printCurrent = false;
 					break;
-				case '-':
-					result -= current;
-					break;
-				case '*':
-					curMul *= current;
-					break;
-				case '/':
-					curMul = Math.round(curMul / (float) current);
-					break;
-				}
-				if (!operators.empty()) {
+				case ")":
 					switch (operators.pop()) {
-					case '+':
-						result += curMul;
-					case '-':
-						result -= curMul;
+						case '+':
+							result += current;
+							break;
+						case '-':
+							result -= current;
+							break;
+						case '*':
+							curMul *= current;
+							break;
+						case '/':
+							curMul = Math.round(curMul / (float) current);
+							break;
 					}
-				}
-				if (printCurrent) {
-					resultText.append(current);
-				}
-				resultText.append(')');
-				return result;
-			case "+":
-				operators.push('+');
-				if (printCurrent) {
-					resultText.append(current);
-				}
-				resultText.append(" + ");
-				switch (operators.get(operators.size() - 2)) {
-				case '+':
-					result += current;
-					break;
-				case '-':
-					result -= current;
-					break;
-				case '*':
-					curMul *= current;
-				case '/':
-					curMul = Math.round(curMul / (float) current);
-					switch (operators.get(operators.size() - 3)) {
-					case '+':
-						result += curMul;
-						break;
-					case '-':
-						result -= curMul;
-						break;
+					if (!operators.empty()) {
+						switch (operators.pop()) {
+							case '+' -> result += curMul;
+							case '-' -> result -= curMul;
+						}
 					}
-					operators.remove(operators.size() - 3);
-				}
-				operators.remove(operators.size() - 2);
-				current = 1;
-				break;
-			case "-":
-				operators.push('-');
-				if (printCurrent) {
-					resultText.append(current);
-				}
-				resultText.append(" - ");
-				switch (operators.get(operators.size() - 2)) {
-				case '+':
-					result += current;
-					break;
-				case '-':
-					result -= current;
-					break;
-				case '*':
-					curMul *= current;
-				case '/':
-					curMul = Math.round(curMul / (float) current);
-					switch (operators.get(operators.size() - 3)) {
-					case '+':
-						result += curMul;
-						break;
-					case '-':
-						result -= curMul;
-						break;
+					if (printCurrent) {
+						resultText.append(current);
 					}
-					operators.remove(operators.size() - 3);
-				}
-				operators.remove(operators.size() - 2);
-				current = 1;
-				break;
-			case "*":
-				operators.push('*');
-				if (printCurrent) {
-					resultText.append(current);
-				}
-				resultText.append(" * ");
-				switch (operators.get(operators.size() - 2)) {
-				case '+':
-				case '-':
-					curMul = current;
-					break;
-				case '*':
-					curMul *= current;
+					resultText.append(')');
+					return result;
+				case "+":
+					operators.push('+');
+					if (printCurrent) {
+						resultText.append(current);
+					}
+					resultText.append(" + ");
+					switch (operators.get(operators.size() - 2)) {
+						case '+':
+							result += current;
+							break;
+						case '-':
+							result -= current;
+							break;
+						case '*':
+							curMul *= current;
+						case '/':
+							curMul = Math.round(curMul / (float) current);
+							switch (operators.get(operators.size() - 3)) {
+								case '+' -> result += curMul;
+								case '-' -> result -= curMul;
+							}
+							operators.remove(operators.size() - 3);
+					}
 					operators.remove(operators.size() - 2);
+					current = 1;
 					break;
-				case '/':
-					curMul = Math.round(curMul / (float) current);
+				case "-":
+					operators.push('-');
+					if (printCurrent) {
+						resultText.append(current);
+					}
+					resultText.append(" - ");
+					switch (operators.get(operators.size() - 2)) {
+						case '+':
+							result += current;
+							break;
+						case '-':
+							result -= current;
+							break;
+						case '*':
+							curMul *= current;
+						case '/':
+							curMul = Math.round(curMul / (float) current);
+							switch (operators.get(operators.size() - 3)) {
+								case '+' -> result += curMul;
+								case '-' -> result -= curMul;
+							}
+							operators.remove(operators.size() - 3);
+					}
 					operators.remove(operators.size() - 2);
+					current = 1;
 					break;
-				}
-				current = 1;
-				break;
-			case "/":
-				operators.push('/');
-				resultText.append(" / ");
-				switch (operators.get(operators.size() - 2)) {
-				case '+':
-				case '-':
-					curMul = current;
+				case "*":
+					operators.push('*');
+					if (printCurrent) {
+						resultText.append(current);
+					}
+					resultText.append(" * ");
+					switch (operators.get(operators.size() - 2)) {
+						case '+':
+						case '-':
+							curMul = current;
+							break;
+						case '*':
+							curMul *= current;
+							operators.remove(operators.size() - 2);
+							break;
+						case '/':
+							curMul = Math.round(curMul / (float) current);
+							operators.remove(operators.size() - 2);
+							break;
+					}
+					current = 1;
 					break;
-				case '*':
-					curMul *= current;
-					operators.remove(operators.size() - 2);
+				case "/":
+					operators.push('/');
+					resultText.append(" / ");
+					switch (operators.get(operators.size() - 2)) {
+						case '+':
+						case '-':
+							curMul = current;
+							break;
+						case '*':
+							curMul *= current;
+							operators.remove(operators.size() - 2);
+							break;
+						case '/':
+							curMul = Math.round(curMul / (float) current);
+							operators.remove(operators.size() - 2);
+							break;
+					}
+					current = 1;
 					break;
-				case '/':
-					curMul = Math.round(curMul / (float) current);
-					operators.remove(operators.size() - 2);
-					break;
-				}
-				current = 1;
-				break;
-			default:
-				try {
-					current = Integer.parseUnsignedInt(token);
-				} catch (final NumberFormatException e) {
-					final Alert alert = new Alert(AlertType.ERROR);
-					alert.setTitle("Formel konnte nicht interpretiert werden");
-					alert.setHeaderText("Formel konnte nicht interpretiert werden");
-					alert.setContentText("Positive Ganzzahl erwartet, war aber " + token);
-					alert.showAndWait();
-					return -1;
-				}
-				printCurrent = true;
+				default:
+					try {
+						current = Integer.parseUnsignedInt(token);
+					} catch (final NumberFormatException e) {
+						final Alert alert = new Alert(AlertType.ERROR);
+						alert.setTitle("Formel konnte nicht interpretiert werden");
+						alert.setHeaderText("Formel konnte nicht interpretiert werden");
+						alert.setContentText("Positive Ganzzahl erwartet, war aber " + token);
+						alert.showAndWait();
+						return -1;
+					}
+					printCurrent = true;
 			}
 		}
 		switch (operators.pop()) {
-		case '+':
-			result += current;
-			break;
-		case '-':
-			result -= current;
-			break;
-		case '*':
-			curMul *= current;
-			break;
-		case '/':
-			curMul = Math.round(curMul / (float) current);
-			break;
+			case '+':
+				result += current;
+				break;
+			case '-':
+				result -= current;
+				break;
+			case '*':
+				curMul *= current;
+				break;
+			case '/':
+				curMul = Math.round(curMul / (float) current);
+				break;
 		}
 		if (!operators.empty()) {
 			switch (operators.pop()) {
-			case '+':
-				result += curMul;
-				break;
-			case '-':
-				result -= curMul;
-				break;
+				case '+' -> result += curMul;
+				case '-' -> result -= curMul;
 			}
 		}
 		if (printCurrent) {
@@ -445,8 +433,10 @@ public class DiceController implements JSONListener {
 	 * @param dice
 	 *            The number of sides of the dice to roll
 	 */
-	public void roll(final int dice) {
-		roll(rolls.getValue(), count.getValue(), dice, mod.getValue());
+	public void roll(final ActionEvent event) {
+		final String diceString = ((Button) event.getSource()).getText().substring(1);
+		final int chosenDice = "?".equals(diceString) ? dice.getValue() : Integer.parseInt(diceString);
+		roll(rolls.getValue(), count.getValue(), chosenDice, mod.getValue());
 	}
 
 	/**
