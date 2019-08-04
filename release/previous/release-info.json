@@ -1,7 +1,7 @@
 {
-	"releaseDate" : "2018-02-27_18-00",
-	"previousReleaseDate" : "2017-06-02_19-00",
-	"previousReleaseLink" : "https://raw.githubusercontent.com/DSATool/DicePlugin/master/release/Dice_2017-06-02_19-00.zip",
+	"releaseDate" : "2019-08-04_18-00",
+	"previousReleaseDate" : "2018-02-27_18-00",
+	"previousReleaseLink" : "https://raw.githubusercontent.com/DSATool/DicePlugin/master/release/Dice_2018-02-27_18-00.zip",
 	"updateInfo" : "https://raw.githubusercontent.com/DSATool/DicePlugin/master/release/update-info.json",
 	"signatureProviderName" : "SunEC",
 	"signatureKeyAlgorithm" : "EC",
