@@ -73,9 +73,7 @@ public class Dice extends Plugin {
 
 	@Override
 	protected void load() {
-		if (controller != null) {
-			controller.load();
-		}
+		controller.load();
 	}
 
 }
