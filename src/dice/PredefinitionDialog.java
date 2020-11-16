@@ -34,22 +34,21 @@ import jsonant.value.JSONObject;
 import jsonant.value.JSONValue;
 
 public class PredefinitionDialog implements JSONListener {
-	private final JSONArray data;
 	@FXML
 	private TextField formula;
 	@FXML
 	private ListView<String> list;
-	private MultipleSelectionModel<String> listModel = null;
 	@FXML
 	private TextField name;
-
 	@FXML
 	private BorderPane pane;
-
 	@FXML
 	private Button remove;
+	@FXML
+	private Button ok;
 
-	private Stage window;
+	private final JSONArray data;
+	private MultipleSelectionModel<String> listModel = null;
 
 	/**
 	 * Create the dialog.
@@ -112,12 +111,6 @@ public class PredefinitionDialog implements JSONListener {
 		reload();
 	}
 
-	@FXML
-	private void okClicked() {
-		data.removeListener(this);
-		window.close();
-	}
-
 	/**
 	 * Reloads the data if it has changed
 	 */
@@ -163,8 +156,14 @@ public class PredefinitionDialog implements JSONListener {
 			ErrorLogger.logError(e);
 		}
 
-		window = new Stage();
+		final Stage window = new Stage();
+		window.setResizable(false);
 		window.setTitle("Vordefinierte Würfelformeln bearbeiten");
+
+		ok.setOnAction(e -> {
+			data.removeListener(this);
+			window.close();
+		});
 
 		listModel = list.getSelectionModel();
 

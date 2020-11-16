@@ -15,7 +15,7 @@
 
 <BorderPane fx:id="pane" xmlns:fx="http://javafx.com/fxml/1" >
    <bottom>
-      <Button onAction="#okClicked" text="Ok" BorderPane.alignment="BOTTOM_RIGHT" />
+      <Button fx:id="ok" text="Ok" BorderPane.alignment="BOTTOM_RIGHT" />
    </bottom>
    <left>
       <VBox spacing="2">
