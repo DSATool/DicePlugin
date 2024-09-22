@@ -21,9 +21,9 @@
       <VBox spacing="2">
          <HBox spacing="2">
             <Button maxWidth="Infinity" onAction="#addEntry" prefWidth="1" HBox.hgrow="ALWAYS" text="&#xE145;" >
-               <padding><Insets top="0" right="0" bottom="0" left="0"/></padding>
+               <padding><Insets top="3" right="0" bottom="-3" left="0"/></padding>
                <font>
-                  <Font name="Material Icons" size="20.0" />
+                  <Font name="Material Symbols Outlined" size="20.0" />
                </font>
                <tooltip>
                   <Tooltip text="Neue Formel" >
@@ -35,9 +35,9 @@
             </Button>
             <Label maxWidth="Infinity" prefWidth="1" HBox.hgrow="ALWAYS" />
             <Button fx:id="remove" disable="true" maxWidth="Infinity" onAction="#removeEntry" prefWidth="1" HBox.hgrow="ALWAYS" text="&#xE15B;" >
-               <padding><Insets top="0" right="0" bottom="0" left="0"/></padding>
+               <padding><Insets top="3" right="0" bottom="-3" left="0"/></padding>
                <font>
-                  <Font name="Material Icons" size="20.0" />
+                  <Font name="Material Symbols Outlined" size="20.0" />
                </font>
                <tooltip>
                   <Tooltip text="Entfernen" >

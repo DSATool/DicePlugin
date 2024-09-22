@@ -43,20 +43,20 @@
          <Label fx:id="selectedFormula" maxWidth="Infinity" />
          <ComboBox fx:id="formula" maxWidth="Infinity" editable="true" />
          <HBox spacing="2" >
-            <Button maxWidth="Infinity" HBox.hgrow="ALWAYS" prefWidth="70" text="&#xE037;" onAction="#rollFormula" >
-               <padding><Insets top="0" right="0" bottom="0" left="0"/></padding>
+            <Button maxWidth="Infinity" HBox.hgrow="ALWAYS" prefWidth="70" text="&#xE5DF;" onAction="#rollFormula" >
+               <padding><Insets top="-6" right="0" bottom="-16" left="0"/></padding>
                <font>
-                  <Font name="Material Icons" size="20.0" />
+                  <Font name="Material Symbols Outlined" size="35.0" />
                </font>
                <tooltip>
                   <Tooltip text="Wurf ausführen" />
                </tooltip>
             </Button>
             <Label maxWidth="Infinity" HBox.hgrow="ALWAYS" prefWidth="70" />
-            <Button maxWidth="Infinity" HBox.hgrow="ALWAYS" prefWidth="70" text="&#xE3C9;" onAction="#showPredefinitionDialog" >
-               <padding><Insets top="0" right="0" bottom="0" left="0"/></padding>
+            <Button maxWidth="Infinity" HBox.hgrow="ALWAYS" prefWidth="70" text="&#xF097;" onAction="#showPredefinitionDialog" >
+               <padding><Insets top="3" right="0" bottom="-2" left="0"/></padding>
                <font>
-                  <Font name="Material Icons" size="20.0" />
+                  <Font name="Material Symbols Outlined" size="20.0" />
                </font>
                <tooltip>
                   <Tooltip text="Vorgaben bearbeiten" />
