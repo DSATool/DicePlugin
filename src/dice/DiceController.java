@@ -41,10 +41,8 @@ public class DiceController implements JSONListener {
 	public ReactiveSpinner<Integer> dice;
 	@FXML
 	private ReactiveSpinner<Integer> count;
-	private JSONArray data;
 	@FXML
 	private ReactiveSpinner<Integer> mod;
-	private final Random r = new Random();
 	@FXML
 	private TextArea results;
 	@FXML
@@ -52,7 +50,11 @@ public class DiceController implements JSONListener {
 	@FXML
 	private Label selectedFormula;
 	@FXML
-	ComboBox<String> formula;
+	private ComboBox<String> formula;
+
+	private final Random r = new Random();
+
+	private JSONArray data;
 
 	/**
 	 * Rolls dice as specified by a formula

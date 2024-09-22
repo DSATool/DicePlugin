@@ -30,17 +30,18 @@
             <Button onAction="#roll" text="W10" maxWidth="Infinity" HBox.hgrow="ALWAYS" prefWidth="70" />
             <Button onAction="#roll" text="W12" maxWidth="Infinity" HBox.hgrow="ALWAYS" prefWidth="70" />
          </HBox>
-         <HBox fx:id="row3" spacing="2" >
+         <HBox spacing="2" >
             <Button onAction="#roll" text="W20" maxWidth="Infinity" HBox.hgrow="ALWAYS" prefWidth="70" />
             <Button onAction="#roll" text="W?" maxWidth="Infinity" HBox.hgrow="ALWAYS" prefWidth="70" />
             <ReactiveSpinner fx:id="dice" imin="1" imax="999" initialValue="100" HBox.hgrow="ALWAYS" prefWidth="70" />
          </HBox>
-         <HBox fx:id="row4" spacing="2" >
+         <HBox spacing="2" >
             <Label maxWidth="Infinity" HBox.hgrow="ALWAYS" prefWidth="70" />
             <ReactiveSpinner fx:id="mod" imin="-99" imax="99" initialValue="0" HBox.hgrow="ALWAYS" prefWidth="70" />
             <Label maxWidth="Infinity" HBox.hgrow="ALWAYS" prefWidth="70" />
          </HBox>
          <Label fx:id="selectedFormula" maxWidth="Infinity" />
+         <Label prefHeight="10" />
          <ComboBox fx:id="formula" maxWidth="Infinity" editable="true" />
          <HBox spacing="2" >
             <Button maxWidth="Infinity" HBox.hgrow="ALWAYS" prefWidth="70" text="&#xE5DF;" onAction="#rollFormula" >
