@@ -44,8 +44,7 @@
          <Label prefHeight="10" />
          <ComboBox fx:id="formula" maxWidth="Infinity" editable="true" />
          <HBox spacing="2" >
-            <Button maxWidth="Infinity" HBox.hgrow="ALWAYS" prefWidth="70" text="&#xE5DF;" onAction="#rollFormula" >
-               <padding><Insets top="-6" right="0" bottom="-16" left="0"/></padding>
+            <Button maxWidth="Infinity" HBox.hgrow="ALWAYS" prefWidth="70" text="&#xE5DF;" onAction="#rollFormula" style="-fx-padding: -6 0 -16 0;" >
                <font>
                   <Font name="Material Symbols Outlined" size="35.0" />
                </font>
@@ -54,8 +53,7 @@
                </tooltip>
             </Button>
             <Label maxWidth="Infinity" HBox.hgrow="ALWAYS" prefWidth="70" />
-            <Button maxWidth="Infinity" HBox.hgrow="ALWAYS" prefWidth="70" text="&#xF097;" onAction="#showPredefinitionDialog" >
-               <padding><Insets top="3" right="0" bottom="-2" left="0"/></padding>
+            <Button maxWidth="Infinity" HBox.hgrow="ALWAYS" prefWidth="70" text="&#xF097;" onAction="#showPredefinitionDialog" style="-fx-padding: 3 0 -2 0;" >
                <font>
                   <Font name="Material Symbols Outlined" size="20.0" />
                </font>

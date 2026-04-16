@@ -15,12 +15,12 @@
  */
 package dice;
 
+import dsatool.gui.GUIUtil;
 import dsatool.resources.ResourceManager;
 import dsatool.util.ErrorLogger;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.IndexRange;
 import javafx.scene.control.ListView;
@@ -156,9 +156,7 @@ public class PredefinitionDialog implements JSONListener {
 			ErrorLogger.logError(e);
 		}
 
-		final Stage window = new Stage();
-		window.setResizable(false);
-		window.setTitle("Vordefinierte Würfelformeln bearbeiten");
+		final Stage window = GUIUtil.setupStage(pane, 400, 250, "Vordefinierte Würfelformen bearbeiten", null, false);
 
 		ok.setOnAction(e -> {
 			data.removeListener(this);
@@ -179,7 +177,6 @@ public class PredefinitionDialog implements JSONListener {
 
 		reload();
 
-		window.setScene(new Scene(pane, 400, 250));
 		window.show();
 	}
 }

@@ -19,6 +19,7 @@ import java.util.Random;
 import java.util.Stack;
 import java.util.StringTokenizer;
 
+import dsatool.gui.ThemedAlert;
 import dsatool.resources.ResourceManager;
 import dsatool.ui.ReactiveSpinner;
 import javafx.event.ActionEvent;
@@ -85,7 +86,7 @@ public class DiceController implements JSONListener {
 					roll = roll.substring(posRep + 1).trim();
 				} catch (final NumberFormatException e) {
 					final String repSpec = roll.substring(0, posRep).trim();
-					final Alert alert = new Alert(AlertType.ERROR);
+					final Alert alert = new ThemedAlert(AlertType.ERROR);
 					alert.setTitle("Formel konnte nicht interpretiert werden");
 					alert.setHeaderText("Formel konnte nicht interpretiert werden");
 					alert.setContentText("Zahl von Wiederholungen muss positive Ganzzahl sein, war aber " + repSpec);
@@ -167,7 +168,7 @@ public class DiceController implements JSONListener {
 						}
 						current = sum;
 					} catch (final NumberFormatException e) {
-						final Alert alert = new Alert(AlertType.ERROR);
+						final Alert alert = new ThemedAlert(AlertType.ERROR);
 						alert.setTitle("Formel konnte nicht interpretiert werden");
 						alert.setHeaderText("Formel konnte nicht interpretiert werden");
 						alert.setContentText("Seitenzahl muss positive Ganzzahl sein, war aber " + token);
@@ -178,7 +179,7 @@ public class DiceController implements JSONListener {
 					break;
 				case "(":
 					if (current != 1) {
-						final Alert alert = new Alert(AlertType.ERROR);
+						final Alert alert = new ThemedAlert(AlertType.ERROR);
 						alert.setTitle("Formel konnte nicht interpretiert werden");
 						alert.setHeaderText("Formel konnte nicht interpretiert werden");
 						alert.setContentText("Vor einer öffnenden Klammer muss ein Rechenzeichen stehen!");
@@ -312,7 +313,7 @@ public class DiceController implements JSONListener {
 					try {
 						current = Integer.parseUnsignedInt(token);
 					} catch (final NumberFormatException e) {
-						final Alert alert = new Alert(AlertType.ERROR);
+						final Alert alert = new ThemedAlert(AlertType.ERROR);
 						alert.setTitle("Formel konnte nicht interpretiert werden");
 						alert.setHeaderText("Formel konnte nicht interpretiert werden");
 						alert.setContentText("Positive Ganzzahl erwartet, war aber " + token);
