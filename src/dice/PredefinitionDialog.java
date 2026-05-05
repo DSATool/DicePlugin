@@ -18,7 +18,6 @@ package dice;
 import dsatool.gui.GUIUtil;
 import dsatool.resources.ResourceManager;
 import dsatool.util.ErrorLogger;
-import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
@@ -158,14 +157,14 @@ public class PredefinitionDialog implements JSONListener {
 
 		final Stage window = GUIUtil.setupStage(pane, 400, 250, "Vordefinierte Würfelformen bearbeiten", null, false);
 
-		ok.setOnAction(e -> {
+		ok.setOnAction(_ -> {
 			data.removeListener(this);
 			window.close();
 		});
 
 		listModel = list.getSelectionModel();
 
-		listModel.selectedIndexProperty().addListener((final ObservableValue<? extends Number> observable, final Number oldValue, final Number newValue) -> {
+		listModel.selectedIndexProperty().addListener((_, _, _) -> {
 			if (listModel.getSelectedIndex() > -1) {
 				name.setText(data.getArr(listModel.getSelectedIndex()).getString(0));
 				formula.setText(data.getArr(listModel.getSelectedIndex()).getString(1));

@@ -385,15 +385,15 @@ public class DiceController implements JSONListener {
 				return value.toString() + " x";
 			}
 		});
-		rolls.valueProperty().addListener(o -> {
+		rolls.valueProperty().addListener(_ -> {
 			updateSelectedFormula();
 		});
 
-		count.valueProperty().addListener(o -> {
+		count.valueProperty().addListener(_ -> {
 			updateSelectedFormula();
 		});
 
-		dice.valueProperty().addListener(o -> {
+		dice.valueProperty().addListener(_ -> {
 			updateSelectedFormula();
 		});
 
@@ -411,7 +411,7 @@ public class DiceController implements JSONListener {
 				return (integer == 0 ? "±" : integer > 0 ? "+" : "") + integer;
 			}
 		});
-		mod.valueProperty().addListener(o -> {
+		mod.valueProperty().addListener(_ -> {
 			updateSelectedFormula();
 		});
 
